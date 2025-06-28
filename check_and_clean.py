@@ -1,7 +1,7 @@
 import os
 import hashlib
 import pandas as pd
-from cleansing_script import *  # import ฟังก์ชัน cleansing ทั้ง 16 อัน
+from main import *  # import ฟังก์ชัน cleansing ทั้ง 16 อัน
 
 DATA_SOURCES = [
     ('https://docs.google.com/spreadsheets/d/e/2PACX-1vSjA_VIRX-RfDE_jbtdK1bjGv05z2XP0gSTSfzHSNjqlr537UQ4L0SvX4qPBh2oewlnbatg90kMYV-g/pub?output=csv', data_cleansing1, 'Sheet1'),
