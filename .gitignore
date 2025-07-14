@@ -1,2 +1,3 @@
-# .gitignore
-service_account.json
+.env
+snapshots/
+__pycache__/

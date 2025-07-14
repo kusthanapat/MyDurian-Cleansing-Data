@@ -3,3 +3,5 @@ numpy
 gspread
 gspread_dataframe
 oauth2client
+python-dotenv
+pymysql

@@ -13,15 +13,23 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Set up Python
+    - name: Set up Python 3.11
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
 
-    - name: Install dependencies
+    - name: Install Python dependencies
       run: |
         pip install -r requirements.txt
 
-    - name: Run check and clean
+    - name: Load environment variables from GitHub Secrets
       run: |
-        python check_and_clean.py
+        echo "MYSQL_HOST=${{ secrets.MYSQL_HOST }}" >> $GITHUB_ENV
+        echo "MYSQL_PORT=${{ secrets.MYSQL_PORT }}" >> $GITHUB_ENV
+        echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> $GITHUB_ENV
+        echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> $GITHUB_ENV
+        echo "MYSQL_DB=${{ secrets.MYSQL_DB }}" >> $GITHUB_ENV
+
+    - name: Run data cleansing script
+      run: |
+        python main.py
