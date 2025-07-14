@@ -37,12 +37,12 @@
 
 
 
-name: Data Cleansing on Push
+name: Data Cleansing Every Hour
 
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: '0 * * * *'   # รันทุกชั่วโมง
+  workflow_dispatch:       # เผื่ออยากกดรันเองแบบแมนนวลจากหน้า GitHub
 
 jobs:
   clean-data:
