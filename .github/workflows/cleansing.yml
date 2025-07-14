@@ -1,3 +1,42 @@
+# name: Data Cleansing on Push
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   clean-data:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v4
+
+#     - name: Set up Python 3.11
+#       uses: actions/setup-python@v5
+#       with:
+#         python-version: '3.11'
+
+#     - name: Install Python dependencies
+#       run: |
+#         pip install -r requirements.txt
+
+#     - name: Load environment variables from GitHub Secrets
+#       run: |
+#         echo "MYSQL_HOST=${{ secrets.MYSQL_HOST }}" >> $GITHUB_ENV
+#         echo "MYSQL_PORT=${{ secrets.MYSQL_PORT }}" >> $GITHUB_ENV
+#         echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> $GITHUB_ENV
+#         echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> $GITHUB_ENV
+#         echo "MYSQL_DB=${{ secrets.MYSQL_DB }}" >> $GITHUB_ENV
+
+#     - name: Run data cleansing script
+#       run: |
+#         python main.py
+
+
+
+
 name: Data Cleansing on Push
 
 on:
@@ -13,23 +52,21 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Set up Python 3.11
+    - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
 
-    - name: Install Python dependencies
+    - name: Install dependencies
       run: |
         pip install -r requirements.txt
 
-    - name: Load environment variables from GitHub Secrets
-      run: |
-        echo "MYSQL_HOST=${{ secrets.MYSQL_HOST }}" >> $GITHUB_ENV
-        echo "MYSQL_PORT=${{ secrets.MYSQL_PORT }}" >> $GITHUB_ENV
-        echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> $GITHUB_ENV
-        echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> $GITHUB_ENV
-        echo "MYSQL_DB=${{ secrets.MYSQL_DB }}" >> $GITHUB_ENV
-
     - name: Run data cleansing script
+      env:
+        MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+        MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
+        MYSQL_USER: ${{ secrets.MYSQL_USER }}
+        MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+        MYSQL_DB: ${{ secrets.MYSQL_DB }}
       run: |
         python main.py
