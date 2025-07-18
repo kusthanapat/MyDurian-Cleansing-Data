@@ -5,4 +5,3 @@ gspread_dataframe
 oauth2client
 python-dotenv
 pymysql
-sqlalchemy
