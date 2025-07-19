@@ -167,16 +167,25 @@ def get_mysql_conn():
         cursorclass=pymysql.cursors.Cursor
     )
 
+# def load_snapshot(table_name):
+#     snapshot_file = f'snapshots/{table_name}_snapshot.csv'
+#     if os.path.exists(snapshot_file):
+#         return pd.read_csv(snapshot_file)
+#     else:
+#         return pd.DataFrame()
 def load_snapshot(table_name):
-    snapshot_file = f'snapshots/{table_name}_snapshot.csv'
+    snapshot_file = f'snapshots/{table_name}_snapshot.pkl'
     if os.path.exists(snapshot_file):
-        return pd.read_csv(snapshot_file)
+        return pd.read_pickle(snapshot_file)
     else:
         return pd.DataFrame()
 
+# def save_snapshot(df, table_name):
+#     os.makedirs("snapshots", exist_ok=True)
+#     df.to_csv(f'snapshots/{table_name}_snapshot.csv', index=False)
 def save_snapshot(df, table_name):
     os.makedirs("snapshots", exist_ok=True)
-    df.to_csv(f'snapshots/{table_name}_snapshot.csv', index=False)
+    df.to_pickle(f'snapshots/{table_name}_snapshot.pkl')
 
 def data_cleansing(csv_url, table_name):
     print(f"\nProcessing table: {table_name}")
