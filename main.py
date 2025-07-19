@@ -267,8 +267,8 @@ def data_cleansing5():
     return data_cleansing('https://docs.google.com/spreadsheets/d/e/2PACX-1vTK_TPcAsI0ZKEVYK4QSrowLAuPCOOAxGfoW2tKOGIkt5_h-k-DFwcyMQn2YlYKUXiCcNjK5el0Qg3z/pub?output=csv', 'mydurian_db5')
 def data_cleansing6():
     return data_cleansing('https://docs.google.com/spreadsheets/d/e/2PACX-1vStKEFx923EuiVg46bsSkhcvnZh6Ty2bXD9dQkso03DWcODL0EcN5w7mZw1HjdcbBypjx8_EnRLoJ84/pub?output=csv', 'mydurian_db6')
-# def data_cleansing7():
-#     return data_cleansing('https://docs.google.com/spreadsheets/d/e/2PACX-1vTkvJN2nfTq60D6ZD8zk1e-QAVj-9mRDcvIBY0RCEf8KKkORZJ-nonDB-zcVcB5pcFAIdSC3lpBkR2j/pub?output=csv', 'mydurian_db7')
+def data_cleansing7():
+    return data_cleansing('https://docs.google.com/spreadsheets/d/e/2PACX-1vTkvJN2nfTq60D6ZD8zk1e-QAVj-9mRDcvIBY0RCEf8KKkORZJ-nonDB-zcVcB5pcFAIdSC3lpBkR2j/pub?output=csv', 'mydurian_db7')
 def data_cleansing8():
     return data_cleansing('https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-UHLiWuqHGRWUZWAuIpIZV_hQuBYrr_Q6qgoy4gN6edTJjwR9c0AQljtr5NJPBkN_zmblPJ7wfr7y/pub?output=csv', 'mydurian_db8')
 def data_cleansing9():
@@ -284,7 +284,7 @@ if __name__ == "__main__":
         data_cleansing4,
         data_cleansing5,
         data_cleansing6,
-        # data_cleansing7,  # Skipped if needed
+        data_cleansing7,  # Skipped if needed
         data_cleansing8,
         data_cleansing9,
         data_cleansing10
