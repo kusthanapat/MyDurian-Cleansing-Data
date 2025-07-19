@@ -221,9 +221,19 @@ def data_cleansing(csv_url, table_name):
         'ฟอสฟอรัส_เปอร์เซ็นต์': (0, 1999),
         'โพแทสเซียม_เปอร์เซ็นต์': (0, 1999),
     }
+    # for col, (mn, mx) in LIMITS.items():
+    #     df[col] = pd.to_numeric(df[col], errors='coerce')
+    #     df[col] = df[col].where(df[col].between(mn, mx), np.nan)
     for col, (mn, mx) in LIMITS.items():
         df[col] = pd.to_numeric(df[col], errors='coerce')
         df[col] = df[col].where(df[col].between(mn, mx), np.nan)
+
+        # เช็คก่อนว่าเหลือข้อมูลมากกว่า 1 จุด
+        if df[col].notna().sum() > 1:
+            df[col] = df[col].interpolate(method='pchip', limit_direction='both')
+
+        df[col] = df[col].ffill().bfill()
+        df[col] = df[col].rolling(window=3, min_periods=2, center=True).mean()
 
     cols = list(LIMITS.keys())
     for col in cols:
